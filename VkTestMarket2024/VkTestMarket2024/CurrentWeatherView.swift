@@ -30,13 +30,15 @@ class CurrentWeatherView: UIView {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = name
+        label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
 
-    private lazy var infoLabel: UILabel = {
+    lazy var infoLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = info
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
 
@@ -50,12 +52,11 @@ class CurrentWeatherView: UIView {
         addSubview(imageIcon)
         addSubview(nameLabel)
         addSubview(infoLabel)
-
         NSLayoutConstraint.activate([
             imageIcon.topAnchor.constraint(equalTo: topAnchor),
             imageIcon.leftAnchor.constraint(equalTo: leftAnchor),
             imageIcon.heightAnchor.constraint(equalTo: heightAnchor),
-            imageIcon.widthAnchor.constraint(equalTo: heightAnchor),  
+            imageIcon.widthAnchor.constraint(equalTo: heightAnchor),
             
             nameLabel.leftAnchor.constraint(equalTo: imageIcon.rightAnchor, constant: 8),
             nameLabel.rightAnchor.constraint(equalTo: rightAnchor),
@@ -64,7 +65,7 @@ class CurrentWeatherView: UIView {
             
             infoLabel.leftAnchor.constraint(equalTo: imageIcon.rightAnchor, constant: 8),
             infoLabel.rightAnchor.constraint(equalTo: rightAnchor),
-            infoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            infoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
             infoLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }

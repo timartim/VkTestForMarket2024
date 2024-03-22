@@ -14,6 +14,8 @@
 		FE9D001D2BAA260400220BD3 /* blue-thermometer-and-cold-16548.svg in Resources */ = {isa = PBXBuildFile; fileRef = FE9D001C2BAA260400220BD3 /* blue-thermometer-and-cold-16548.svg */; };
 		FE9D001F2BAA264700220BD3 /* blue-wind-16544.svg in Resources */ = {isa = PBXBuildFile; fileRef = FE9D001E2BAA264700220BD3 /* blue-wind-16544.svg */; };
 		FE9D00212BAA26C200220BD3 /* cloud_outline_24.svg in Resources */ = {isa = PBXBuildFile; fileRef = FE9D00202BAA26C200220BD3 /* cloud_outline_24.svg */; };
+		FE9D00232BAB11C300220BD3 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D00222BAB11C300220BD3 /* Errors.swift */; };
+		FE9D00252BAC9BCB00220BD3 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D00242BAC9BCB00220BD3 /* ForecastView.swift */; };
 		FE9DFFEA2BA9FF4500220BD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DFFE92BA9FF4500220BD3 /* AppDelegate.swift */; };
 		FE9DFFEC2BA9FF4500220BD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DFFEB2BA9FF4500220BD3 /* SceneDelegate.swift */; };
 		FE9DFFEE2BA9FF4500220BD3 /* WeatherAtUsersLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DFFED2BA9FF4500220BD3 /* WeatherAtUsersLocationController.swift */; };
@@ -34,6 +36,8 @@
 		FE9D001C2BAA260400220BD3 /* blue-thermometer-and-cold-16548.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "blue-thermometer-and-cold-16548.svg"; path = "../../../../../../Downloads/blue-thermometer-and-cold-16548.svg"; sourceTree = "<group>"; };
 		FE9D001E2BAA264700220BD3 /* blue-wind-16544.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "blue-wind-16544.svg"; path = "../../../../../../Downloads/blue-wind-16544.svg"; sourceTree = "<group>"; };
 		FE9D00202BAA26C200220BD3 /* cloud_outline_24.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cloud_outline_24.svg; path = ../../../../../../Downloads/cloud_outline_24.svg; sourceTree = "<group>"; };
+		FE9D00222BAB11C300220BD3 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		FE9D00242BAC9BCB00220BD3 /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		FE9DFFE62BA9FF4500220BD3 /* VkTestMarket2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VkTestMarket2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9DFFE92BA9FF4500220BD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9DFFEB2BA9FF4500220BD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				FE9D00162BAA0FA700220BD3 /* Main.storyboard */,
 				FE9D00182BAA0FB100220BD3 /* LaunchScreen.storyboard */,
 				FE9D001A2BAA24A100220BD3 /* CurrentWeatherView.swift */,
+				FE9D00222BAB11C300220BD3 /* Errors.swift */,
+				FE9D00242BAC9BCB00220BD3 /* ForecastView.swift */,
 			);
 			path = VkTestMarket2024;
 			sourceTree = "<group>";
@@ -185,6 +191,8 @@
 				FE9D00002BAA088C00220BD3 /* FindWeatherController.swift in Sources */,
 				FE9D001B2BAA24A100220BD3 /* CurrentWeatherView.swift in Sources */,
 				FE9DFFEC2BA9FF4500220BD3 /* SceneDelegate.swift in Sources */,
+				FE9D00232BAB11C300220BD3 /* Errors.swift in Sources */,
+				FE9D00252BAC9BCB00220BD3 /* ForecastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
