@@ -3,11 +3,12 @@ import CoreLocation
 
 
 class WeatherAtUsersLocationController: UIViewController, CLLocationManagerDelegate {
-    var locationManager: CLLocationManager!
-    var apiKey = "731e3eeefa633f697edc576abc855ea2"
-    var currentLatitude: Double?
-    var currentLongitude: Double?
-
+    private var locationManager: CLLocationManager!
+    private var apiKey = "731e3eeefa633f697edc576abc855ea2"
+    private var currentLatitude: Double?
+    private var currentLongitude: Double?
+    private var currentCity: String?
+    private lazy var weatherUI: UIView = {return WeatherUI()}()
     private lazy var controllerLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,10 +52,11 @@ class WeatherAtUsersLocationController: UIViewController, CLLocationManagerDeleg
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    lazy var temp = CurrentWeatherView(image: UIImage(named: "Thermometer") ?? UIImage(), name: "Температура", info: "-26 градусов")
-    lazy var wind = CurrentWeatherView(image: UIImage(named: "Wind") ?? UIImage(), name: "Ветер", info: "2 м/с")
-    lazy var precipitation = CurrentWeatherView(image: UIImage(named: "Clould") ?? UIImage(), name: "Влажность", info: "2мм")
-    lazy var clould = CurrentWeatherView(image: UIImage(named: "Clould") ?? UIImage(), name: "Облачность", info: "Низкая")
+    lazy var temp = CurrentWeatherView(image: UIImage(named: "Thermometer") ?? UIImage(), name: "Температура", info: "Неизвестно")
+    lazy var wind = CurrentWeatherView(image: UIImage(named: "Wind") ?? UIImage(), name: "Ветер", info: "Неизвестно")
+    lazy var precipitation = CurrentWeatherView(image: UIImage(named: "Clould") ?? UIImage(), name: "Влажность", info: "Неизвестно")
+    lazy var clould = CurrentWeatherView(image: UIImage(named: "Clould") ?? UIImage(), name: "Облачность", info: "Неизвестно")
+    lazy var city = CurrentWeatherView(image: UIImage(named: "City") ?? UIImage(), name: "Ваш город:", info: "Неизвестно")
     private lazy var forecastView = ForecastView()
     private func addElementsToMainStackView() {
         stackViewTemptAndWind.addArrangedSubview(temp)
@@ -64,6 +66,7 @@ class WeatherAtUsersLocationController: UIViewController, CLLocationManagerDeleg
         stackViewMain.addArrangedSubview(getWeatherInformationButton)
         stackViewMain.addArrangedSubview(stackViewTemptAndWind)
         stackViewMain.addArrangedSubview(stackViewClouldAndPrecipitation)
+        stackViewMain.addArrangedSubview(city)
     }
     
     override func viewDidLoad() {
@@ -92,7 +95,7 @@ class WeatherAtUsersLocationController: UIViewController, CLLocationManagerDeleg
             stackViewMain.topAnchor.constraint(equalTo: controllerLabel.bottomAnchor, constant: 10),
             stackViewMain.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             stackViewMain.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            stackViewMain.heightAnchor.constraint(equalToConstant: 150),
+            stackViewMain.heightAnchor.constraint(equalToConstant: 200),
             
             forecastView.topAnchor.constraint(equalTo: stackViewMain.bottomAnchor, constant: 20),
             forecastView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
@@ -105,7 +108,19 @@ class WeatherAtUsersLocationController: UIViewController, CLLocationManagerDeleg
         if let location = locations.first {
                     currentLatitude = location.coordinate.latitude
                     currentLongitude = location.coordinate.longitude
+                    let geocoder = CLGeocoder()
+                    geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+                        guard let self = self else { return }
 
+                        if let error = error {
+                            print("Произошла ошибка при обратном геокодировании: \(error)")
+                            return
+                        }
+
+                        if let placemark = placemarks?.first, let city = placemark.locality {
+                            self.currentCity = city
+                        }
+                    }
                 }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -116,6 +131,7 @@ class WeatherAtUsersLocationController: UIViewController, CLLocationManagerDeleg
         self.wind.infoLabel.text = String("\(wind.speed) in km/h")
         self.clould.infoLabel.text = String("\(clouds.all)%")
         self.precipitation.infoLabel.text = String("\(humid)%")
+        self.city.infoLabel.text = currentCity
     }
     func updateWeatherForecast(daily: [DailyWeather]){
         forecastView.forecastData = daily

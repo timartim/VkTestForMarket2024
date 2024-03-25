@@ -2,13 +2,14 @@ import UIKit
 
 class ForecastView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-    var forecastData: [DailyWeather] = [] 
-    
+    var forecastData: [DailyWeather] = []
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         delegate = self
         dataSource = self
         register(ForecastViewCell.self, forCellReuseIdentifier: "ForecastViewCell")
+        layer.cornerRadius = 10
+        backgroundColor = .black
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -41,6 +42,9 @@ class ForecastViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .gray
+        layer.borderWidth = 5
+        layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
         setupViews()
     }
     
@@ -66,7 +70,7 @@ class ForecastViewCell: UITableViewCell {
     
     func configure(with weather: DailyWeather) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.dateFormat = "EEEE HH:mm"
         let date = Date(timeIntervalSince1970: TimeInterval(weather.dt))
         
         dayLabel.text = dateFormatter.string(from: date)
